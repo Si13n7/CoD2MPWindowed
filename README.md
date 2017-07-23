@@ -2,7 +2,7 @@
 
 ***
 
-# CALL OF DUTY 2 WINDOWED
+# [Call of Duty 2 Multiplayer (Windowed)](https://www.si13n7.com/Downloads/Gaming%20Tools/Call%20of%20Duty%202%20Windowed/)
 
 A friend told me about the missing windowed mode for Call of Duty 2 and that he tries to fix it with reverse engineering.
 
@@ -26,7 +26,7 @@ To prevent md5 mismatch issues in PunkBuster it creates copies for 'CoD2MP_s.exe
 - [Call of Duty 2](https://en.wikipedia.org/wiki/Call_of_Duty_2)
 
 ### Requirements (Developer):
-- Microsoft Windows 7 or higher (64-bit)
+- Microsoft Windows 7 or higher
 - [Microsoft Visual Studio 2017 + .NET Framework 4.6.1 SDK](https://www.visualstudio.com/downloads/)
 - [Si13n7 Dev. ® CSharp Library Binaries](https://github.com/Si13n7/SilDev.CSharpLib/)
 
