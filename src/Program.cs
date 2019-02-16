@@ -14,7 +14,7 @@
         private static void Main()
         {
             Log.AllowLogging();
-            using (new Mutex(true, ProcessEx.CurrentName, out bool newInstance))
+            using (new Mutex(true, ProcessEx.CurrentName, out var newInstance))
             {
                 if (!newInstance)
                 {

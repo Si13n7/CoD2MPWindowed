@@ -6,6 +6,7 @@
     using System.Windows.Forms;
     using Properties;
     using SilDev;
+    using SilDev.Forms;
     using static MainClass;
 
     public partial class MainForm : Form
@@ -21,20 +22,9 @@
             ResizeEnd += (s, args) => WindowEnforcement.Interval = 200;
         }
 
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                var cp = base.CreateParams;
-                cp.ClassStyle |= 0x200;
-                return cp;
-            }
-        }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
-            var style = (int)WinApi.NativeHelper.SendMessage(GamePanel.Handle, 0x1037u, IntPtr.Zero, IntPtr.Zero) | 0x8000 | 0x10000;
-            WinApi.NativeHelper.SendMessage(GamePanel.Handle, 0x1036u, IntPtr.Zero, new IntPtr(style));
+            GamePanel.SetDoubleBuffer();
             Patch();
             CompatFlags();
             using (var p = ProcessEx.Start(ExePath, EnvironmentEx.CommandLine(false), false, false))
@@ -85,7 +75,7 @@
                         WinApi.NativeHelper.GetWindowRect(WindowHandle, ref curRect);
                         if (WinApi.NativeHelper.GetLastError() > 0)
                             return;
-                        if (PatchIsActive)
+                        if (Environment.OSVersion.Version.Major < 10)
                         {
                             var scrRect = RectangleToScreen(ClientRectangle);
                             const int borderSize = 10;

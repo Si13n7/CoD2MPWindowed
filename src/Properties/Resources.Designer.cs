@@ -19,7 +19,7 @@ namespace CoD2MP_w.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -57,33 +57,6 @@ namespace CoD2MP_w.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to WINXPSP2.
-        /// </summary>
-        internal static string CompatFlag0 {
-            get {
-                return ResourceManager.GetString("CompatFlag0", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to DISABLEDWM.
-        /// </summary>
-        internal static string CompatFlag1 {
-            get {
-                return ResourceManager.GetString("CompatFlag1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to HKCU\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers.
-        /// </summary>
-        internal static string CompatFlagsPath {
-            get {
-                return ResourceManager.GetString("CompatFlagsPath", resourceCulture);
             }
         }
         

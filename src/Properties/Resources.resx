@@ -121,15 +121,6 @@
   <data name="HighQuality" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cod2_high.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CompatFlag0" xml:space="preserve">
-    <value>WINXPSP2</value>
-  </data>
-  <data name="CompatFlag1" xml:space="preserve">
-    <value>DISABLEDWM</value>
-  </data>
-  <data name="CompatFlagsPath" xml:space="preserve">
-    <value>HKCU\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers</value>
-  </data>
   <data name="DllName" xml:space="preserve">
     <value>gfx_d3d_mp_x86_s.dll</value>
   </data>

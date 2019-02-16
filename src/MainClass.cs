@@ -12,19 +12,24 @@
         private static readonly string DllPath = PathEx.Combine(PathEx.LocalDir, Resources.DllName);
         private static readonly string NewDllPath = PathEx.Combine(PathEx.LocalDir, Resources.NewDllName);
         private static readonly string NewExePath = PathEx.Combine(PathEx.LocalDir, Resources.NewExeName);
+
         public static string ExePath { get; private set; } = PathEx.Combine(PathEx.LocalDir, Resources.ExeName);
+
         public static IntPtr WindowHandle { get; set; } = IntPtr.Zero;
-        public static bool PatchIsRequired { get; } = Environment.OSVersion.Version.Major < 10;
+
+        public static bool PatchIsRequired { get; } = true;
+
         public static bool PatchIsActive { get; private set; }
 
         public static void CompatFlags()
         {
-            if (new Version(Environment.OSVersion.Version.Major, Environment.OSVersion.Version.Minor) <= new Version(6, 1))
+            var layers = new AppCompatLayers
             {
-                Reg.Write(Resources.CompatFlagsPath, ExePath, $"~ {Resources.CompatFlag0} {Resources.CompatFlag1}");
-                return;
-            }
-            Reg.Write(Resources.CompatFlagsPath, ExePath, $"~ {Resources.CompatFlag0}");
+                OperatingSystem = AppCompatSystemVersions.WinXPSP2,
+                DisableFullscreenOptimizations = true,
+                RunAsAdministrator = true
+            };
+            AppCompat.SetLayers(ExePath, layers);
         }
 
         public static void Patch()
@@ -47,7 +52,7 @@
                     dllBytes[offset] = 0xeb;
                 }
                 File.WriteAllBytes(NewDllPath, dllBytes);
-                var dllName = Path.GetFileName(DllPath)?.Replace("d3d", "%s");
+                var dllName = Path.GetFileName(DllPath).Replace("d3d", "%s");
                 if (string.IsNullOrEmpty(dllName))
                     throw new ArgumentNullException(nameof(dllName));
                 const int exeOffset = 0x1ae898;
@@ -70,18 +75,18 @@
             if (!PatchIsActive)
                 return;
             ExePath = NewExePath;
-            Data.SetAttributes(NewExePath, FileAttributes.Hidden);
-            Data.SetAttributes(NewDllPath, FileAttributes.Hidden);
+            FileEx.SetAttributes(NewExePath, FileAttributes.Hidden);
+            FileEx.SetAttributes(NewDllPath, FileAttributes.Hidden);
         }
 
         private static void Cleanup()
         {
             try
             {
-                if (File.Exists(NewExePath))
-                    File.Delete(NewExePath);
-                if (File.Exists(NewDllPath))
-                    File.Delete(NewDllPath);
+                FileEx.SetAttributes(NewExePath, FileAttributes.Normal);
+                FileEx.Delete(NewExePath);
+                FileEx.SetAttributes(NewDllPath, FileAttributes.Normal);
+                FileEx.Delete(NewDllPath);
             }
             catch (Exception ex)
             {
