@@ -17,9 +17,9 @@
         {
             InitializeComponent();
             Icon = Resources.HighQuality;
-            ResizeBegin += (s, args) => WindowEnforcement.Interval = 1;
+            ResizeBegin += (s, args) => WindowEnforcement.Interval = 100;
             Resize += (s, args) => GamePanel.Update();
-            ResizeEnd += (s, args) => WindowEnforcement.Interval = 200;
+            ResizeEnd += (s, args) => WindowEnforcement.Interval = 400;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
