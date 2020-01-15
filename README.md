@@ -26,9 +26,14 @@ To prevent md5 mismatch issues in PunkBuster it creates copies for 'CoD2MP_s.exe
 - [Call of Duty 2](https://en.wikipedia.org/wiki/Call_of_Duty_2)
 
 ### Requirements (Developer):
-- Microsoft Windows 7 or higher
-- [Microsoft Visual Studio 2017 + .NET Framework 4.7 SDK](https://www.visualstudio.com/downloads/)
-- [Si13n7 Dev. ® CSharp Library Binaries](https://github.com/Si13n7/SilDev.CSharpLib/)
+- [Microsoft Windows 10 (64-bit recommended)](https://www.microsoft.com/software-download/windows10)
+   - _Microsoft Windows 7, 8 and 8.1 should work well, but is no longer tested_
+- [Microsoft Visual Studio 2019 + .NET Framework 4.7.2 SDK](https://www.visualstudio.com/downloads/)
+- [Si13n7 Dev.™ CSharp Library Binaries](https://github.com/Si13n7/SilDev.CSharpLib/)
 
+## Would you like to help?
 
-<i>Would you like to help support me? [Donate by PayPal](http://paypal.si13n7.com/) or [Report a Problem](https://support.si13n7.com/)! Please also feel free to report suggestions as well!</i>
+- [Star this Project](https://github.com/Si13n7/CoD2MPWindowed/stargazers) :star: and show me that this project interests you :hugs:
+- [Open an Issue](https://github.com/Si13n7/CoD2MPWindowed/issues/new) :coffee: to give me your feedback and tell me your ideas and wishes for the future :sunglasses:
+- [Open a Ticket](https://support.si13n7.de/) :mailbox: if you don't have a GitHub account, you can contact me directly on my website :wink:
+- [Donate by PayPal](http://donate.si13n7.com/) :money_with_wings: to buy me some cookies :cookie:
