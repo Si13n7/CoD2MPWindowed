@@ -26,15 +26,7 @@
                     MessageBox.Show(Resources.MsgNotFound, Resources.WindowTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                foreach (var instance in ProcessEx.GetInstances(ExePath, true))
-                    try
-                    {
-                        instance.Kill();
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Write(ex);
-                    }
+                ProcessExit();
                 AppDomain.CurrentDomain.ProcessExit += (s, e) => ProcessExit();
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);

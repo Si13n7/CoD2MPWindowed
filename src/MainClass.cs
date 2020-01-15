@@ -25,7 +25,7 @@
         {
             var layers = new AppCompatLayers
             {
-                OperatingSystem = AppCompatSystemVersions.WinXPSP2,
+                OperatingSystem = AppCompatSystemVersion.WinXPSP2,
                 DisableFullscreenOptimizations = true,
                 RunAsAdministrator = true
             };
@@ -60,14 +60,12 @@
                 if (!Encoding.ASCII.GetString(exeBytes.Skip(exeOffset).Take(dllName.Length).ToArray()).EqualsEx(dllName))
                     throw new ArgumentOutOfRangeException(nameof(exeOffset));
                 File.Copy(ExePath, NewExePath);
-                using (var exeWriter = new BinaryWriter(File.Open(NewExePath, FileMode.Open)))
-                {
-                    exeWriter.BaseStream.Position = exeOffset;
-                    exeWriter.Write(Encoding.ASCII.GetBytes(Path.GetFileName(NewDllPath).Replace("d3d", "%s")));
-                    PatchIsActive = true;
-                }
+                using var exeWriter = new BinaryWriter(File.Open(NewExePath, FileMode.Open));
+                exeWriter.BaseStream.Position = exeOffset;
+                exeWriter.Write(Encoding.ASCII.GetBytes(Path.GetFileName(NewDllPath).Replace("d3d", "%s")));
+                PatchIsActive = true;
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex.IsCaught())
             {
                 Log.Write(ex, true, true);
                 Cleanup();
@@ -88,7 +86,7 @@
                 FileEx.SetAttributes(NewDllPath, FileAttributes.Normal);
                 FileEx.Delete(NewDllPath);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex.IsCaught())
             {
                 Log.Write(ex, true);
             }
@@ -98,15 +96,17 @@
         {
             if (WindowHandle != IntPtr.Zero)
                 WinApi.NativeHelper.CloseHandle(WindowHandle);
-            foreach (var instance in ProcessEx.GetInstances(ExePath, true))
+            ProcessEx.GetInstances(ExePath, true).ForEach(instance =>
+            {
                 try
                 {
                     instance.Kill();
                 }
-                catch (Exception ex)
+                catch (Exception ex) when (ex.IsCaught())
                 {
                     Log.Write(ex);
                 }
+            });
             Cleanup();
         }
     }

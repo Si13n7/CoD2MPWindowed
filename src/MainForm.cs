@@ -27,9 +27,9 @@
             GamePanel.SetDoubleBuffer();
             Patch();
             CompatFlags();
-            using (var p = ProcessEx.Start(ExePath, EnvironmentEx.CommandLine(false), false, false))
-                if (p?.HasExited == false)
-                    p.WaitForInputIdle();
+            using (var process = ProcessEx.Start(ExePath, EnvironmentEx.CommandLine(false), false, false))
+                if (process?.HasExited == false)
+                    process.WaitForInputIdle();
             WindowEnforcement.Enabled = true;
         }
 
@@ -97,7 +97,7 @@
                         }
                     }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex.IsCaught())
             {
                 Log.Write(ex);
             }

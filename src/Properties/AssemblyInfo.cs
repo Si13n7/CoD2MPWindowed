@@ -4,9 +4,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Call of Duty 2 Multiplayer (Windowed)")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Si13n7 Dev. ®")]
+[assembly: AssemblyCompany("Si13n7 Dev.™")]
 [assembly: AssemblyProduct("CoD2MP_w")]
-[assembly: AssemblyCopyright("Copyright © Si13n7 Dev. ® 2019")]
+[assembly: AssemblyCopyright("Copyright © Si13n7 Dev.™ 2020")]
 [assembly: AssemblyTrademark("Si13n7 Dev. ®")]
 [assembly: AssemblyCulture("")]
 
